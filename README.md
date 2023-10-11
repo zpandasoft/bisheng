@@ -168,3 +168,6 @@ Bisheng 采用了以下依赖库:
 - 感谢开源非结构化数据解析引擎 [unstructured](https://github.com/Unstructured-IO/unstructured)。
 - 感谢开源langchain可视化工具 [langflow](https://github.com/logspace-ai/langflow)。
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=dataelement/bisheng&type=Date)](https://star-history.com/#dataelement/bisheng&Date)
