@@ -31,6 +31,9 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 
 使用毕昇平台，我们可以搭建各类丰富的大模型应用：
 
+<table border="0">
+  <tr>
+    <td>
 分析报告生成
 
 - 📃   合同审核报告生成
@@ -38,29 +41,34 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 - 📈   招股书分析报告生成
 - 💼   智能投顾报告生成
 - 👀   文档摘要生成
+    </td>
 
-
+    <td>
 知识库问答
 - 👩‍💻  用户手册问答
 - 👩🏻‍🔬  研报知识库问答
 - 🗄  规章制度问答
 - 💊  《中华药典》知识问答
 - 📊  股价数据库问答
-
-
+    </td>
+    <td>
 对话
 - 🎭  扮演面试官对话
 - 📍  小红书文案助手
 - 👩‍🎤  扮演外教对话
-- 👨‍🏫  简历优化助手
-
+- 👨‍🏫  简历优化助手      
+    </td>
+    <td>
 
 要素提取
 
 - 📄  合同关键要素提取
 - 🏗️  工程报告要素提取
 - 🗂️  通用元数据提取
-- 🎫  卡证票据要素提取
+- 🎫  卡证票据要素提取      
+    </td>
+  </tr>
+</table>
 
 
 各类应用构建方法详见：[应用案例](https://m7a7tqsztt.feishu.cn/wiki/ZfkmwLPfeiAhQSkK2WvcX87unxc)
