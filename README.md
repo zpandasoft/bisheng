@@ -31,7 +31,32 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 
 使用毕昇平台，我们可以搭建各类丰富的大模型应用：
 
-<table border="0" style="font-size: 14px">
+<table border="0">
+  <tr>
+    <td>
+合同审核报告生成
+<img src="https://www.dataelem.com/nstatic/合同审核报告生成.gif" alt="Hetong report gen">
+    </td>
+    <td>
+产品经理面试官
+<img src="https://www.dataelem.com/nstatic/产品经理面试官.PNG" alt="PM Interviewer">
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+要素提取
+<img src="https://www.dataelem.com/nstatic/要素提取.gif" alt="Element Extract">
+    </td>
+    <td>
+知识库问答
+<img src="https://www.dataelem.com/nstatic/知识库问答.gif" alt="Knowledge QA">
+    </td>
+  </tr>
+</table>
+
+
+<table border="0" style="font-size:14px">
   <tr>
     <td>
 分析报告生成
