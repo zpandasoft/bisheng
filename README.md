@@ -31,7 +31,7 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 
 使用毕昇平台，我们可以搭建各类丰富的大模型应用：
 
-<table border="0">
+<table border="0" style="font-size: 14px">
   <tr>
     <td>
 分析报告生成
