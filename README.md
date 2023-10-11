@@ -39,10 +39,9 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
     </td>
     <td>
 产品经理面试官
-<img src="https://www.dataelem.com/nstatic/产品经理面试官.PNG" alt="PM Interviewer">
+<img src="https://www.dataelem.com/nstatic/产品经理面试官.png" alt="PM Interviewer">
     </td>
   </tr>
-
   <tr>
     <td>
 要素提取
