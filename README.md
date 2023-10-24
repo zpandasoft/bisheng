@@ -39,7 +39,7 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 
 使用毕昇平台，我们可以搭建各类丰富的大模型应用：
 
-https://www.bilibili.com/video/BV1294y1L7LR/
+<iframe src="//player.bilibili.com/player.html?aid=365054268&bvid=BV1294y1L7LR&cid=1308806479&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 <table border="0" style="font-size:14px">
   <tr>
