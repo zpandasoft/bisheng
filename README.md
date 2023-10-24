@@ -1,5 +1,13 @@
 <img src="https://www.dataelem.com/nstatic/bisheng.png" alt="Bisheng banner">
 
+<p align="center">
+    <a href="https://dataelem.feishu.cn/wiki/ZxW6wZyAJicX4WkG0NqcWsbynde"><img src="https://img.shields.io/badge/docs-Wiki-brightgreen"></a>
+    <img src="https://img.shields.io/github/license/dataelement/bisheng" alt="license"/>
+    <img src="https://img.shields.io/docker/pulls/dataelement/bisheng-frontend" alt="docker-pull-count" />
+    <a href=""><img src="https://img.shields.io/github/last-commit/dataelement/bisheng"></a>
+    <a href="https://star-history.com/#dataelement/bisheng&Timeline"><img src="https://img.shields.io/github/stars/dataelement/bisheng?color=yellow"></a> 
+</p>
+
 
 <div class="column" align="middle">
   <!-- <a href="https://bisheng.slack.com/join/shared_invite/"> -->
@@ -31,29 +39,7 @@ Bisheng 基于 [Apache 2.0 License](https://github.com/dataelement/bisheng/blob/
 
 使用毕昇平台，我们可以搭建各类丰富的大模型应用：
 
-<table border="0">
-  <tr>
-    <td>
-合同审核报告生成
-<img src="https://www.dataelem.com/nstatic/合同审核报告生成.gif" alt="Hetong report gen">
-    </td>
-    <td>
-产品经理面试官
-<img src="https://www.dataelem.com/nstatic/产品经理面试官.png" alt="PM Interviewer">
-    </td>
-  </tr>
-  <tr>
-    <td>
-要素提取
-<img src="https://www.dataelem.com/nstatic/要素提取.gif" alt="Element Extract">
-    </td>
-    <td>
-知识库问答
-<img src="https://www.dataelem.com/nstatic/知识库问答.gif" alt="Knowledge QA">
-    </td>
-  </tr>
-</table>
-
+https://www.bilibili.com/video/BV1294y1L7LR/
 
 <table border="0" style="font-size:14px">
   <tr>
@@ -131,13 +117,11 @@ Todo: 待补充
 
 获取更多有关安装、开发、部署和管理的指南，请查看 [Bisheng 文档](https://m7a7tqsztt.feishu.cn/wiki/ZxW6wZyAJicX4WkG0NqcWsbynde).
 
-
 ## 社区
 
 - 欢迎加入 [Slack](https://www.dataelem.com/) 频道分享你的建议与问题。
 - 你也可以通过 [FAQ](https://m7a7tqsztt.feishu.cn/wiki/XdGCwkDJviC0Z8klbdbcF790n9b) 页面，查看常见问题及解答。
 - 你也可以加入 [讨论组](https://github.com/dataelement/bisheng/discussions) 发起问题和讨论。
-
 
 <!-- 订阅 Bisheng 邮件：
 
