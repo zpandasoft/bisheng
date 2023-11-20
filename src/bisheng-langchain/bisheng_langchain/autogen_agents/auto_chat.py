@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class AutoGenChat(Chain):
     """Chain that print the loader output.
     """
-    user_proxy_agent: AutoGenUserProxyAgent
+    user_proxy_agent: ConversableAgent
     recipient: ConversableAgent
 
     input_key: str = "chat_topic"  #: :meta private:

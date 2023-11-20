@@ -2,6 +2,8 @@ import os
 from bisheng_langchain.autogen_agents import (AutoGenAssistantAgent,
     AutoGenGroupChatManager,
     AutoGenUserProxyAgent,
+    AutoGenCodeAgent,
+    AutoGenUserAgent,
     AutoGenChat,
     AutoGenCustomAgent)
 from langchain import LLMChain
@@ -131,7 +133,34 @@ Reply "TERMINATE" in the end when everything is done.
     print(response)
 
 
+def test_user_code_agents():
+    user = AutoGenUserAgent("Admin",
+                            max_consecutive_auto_reply=10,
+                            human_input_mode="ALWAYS",
+                            system_message="A human admin. Interact with the Executor to check the finnal results",
+                            )
+   
+    assistant = AutoGenAssistantAgent("Assistant",
+                                model_name='gpt-4',
+                                openai_api_key=openai_api_key,
+                                openai_proxy=openai_proxy,
+                                temperature=0)
+
+    executor = AutoGenCodeAgent("Executor",
+                                system_message="Executor. Execute the code written by the Assistant.")
+
+    manager = AutoGenGroupChatManager(agents=[user, assistant, executor], messages=[], max_round=50,
+                                      model_name='gpt-4',
+                                      openai_api_key=openai_api_key,
+                                      openai_proxy=openai_proxy,
+                                      temperature=0)
+
+    chat = AutoGenChat(user_proxy_agent=user, recipient=manager)
+    response = chat.run("今天的日期是什么，距离春节还有多少天？")
+    print(response)
+
 # test_two_agents()
 # test_group_agents()
-test_custom_agent()
+# test_custom_agent()
+test_user_code_agents()
 
