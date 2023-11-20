@@ -19,6 +19,8 @@ class AutoGenCustomAgent(ConversableAgent):
             name=name,
             system_message=system_message,
             human_input_mode='NEVER',
+            code_execution_config=False,
+            llm_config=False,
             **kwargs,
         )
         self.func = func
