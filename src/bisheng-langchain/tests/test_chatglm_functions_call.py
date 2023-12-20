@@ -13,11 +13,11 @@ from pydantic import Field, BaseModel
 class ArgSchema(BaseModel):
     formula: str = Field(..., description="the formula to be calculated")
 
-
 class Calculator(BaseTool, abc.ABC):
     name = "Calculator"
     description = "Useful for when you need to answer questions about math"
     args_schema: Type[BaseModel] = ArgSchema
+
 
     def __init__(self):
         super().__init__()
@@ -33,7 +33,6 @@ class Calculator(BaseTool, abc.ABC):
         elif "log" in para:
             para = para.replace("log", "math.log")
         return eval(para)
-
 
 def init_calculator_by_tool() -> Tool:
     cal = Calculator()
@@ -67,8 +66,7 @@ def test_chatglm_functions_call():
     print(predicted_message, type(predicted_message))
 
 
-def test_chatglm_functions_agent():
-    # cal = Calculator()
+def test_chatglm_functions_agent():    # cal = Calculator()
     cal = init_calculator_by_tool()
     llm = HostChatGLM(model_name='chatglm3-6b', host_base_url='http://192.168.106.12:5001/v2.1/models', max_tokens=8192)
     agent = ChatglmFunctionsAgent.from_llm_and_tools(llm=llm, tools=[cal], verbose=True, handle_parsing_errors=True)
@@ -78,5 +76,4 @@ def test_chatglm_functions_agent():
 
 # test_chatglm_functions_call()
 test_chatglm_functions_agent()
-
 

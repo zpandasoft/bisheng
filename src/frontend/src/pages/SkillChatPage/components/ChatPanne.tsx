@@ -6,7 +6,7 @@ import ShadTooltip from "../../../components/ShadTooltipComponent";
 import { Button } from "../../../components/ui/button";
 import { alertContext } from "../../../contexts/alertContext";
 import { TabsContext } from "../../../contexts/tabsContext";
-import { getChatHistory, postBuildInit, postValidatePrompt } from "../../../controllers/API";
+import { getChatHistory, postBuildInit, postValidatePrompt,chatResolved } from "../../../controllers/API";
 import { Variable } from "../../../controllers/API/flow";
 import { sendAllProps } from "../../../types/api";
 import { ChatMessageType } from "../../../types/chat";
@@ -21,9 +21,11 @@ interface Iprops {
     flow: FlowType
     libId?: string
     version?: string
+    onReload: (flow: FlowType) => void
 }
 
-export default forwardRef(function ChatPanne({ chatId, flow, libId, version = 'v1' }: Iprops) {
+export default forwardRef(function ChatPanne({ chatId, flow, libId, version = 'v1', onReload }: Iprops) {
+
     const { t } = useTranslation()
     const { tabsState } = useContext(TabsContext);
 
@@ -161,16 +163,19 @@ export default forwardRef(function ChatPanne({ chatId, flow, libId, version = 'v
     // 溯源
     const [souce, setSouce] = useState<ChatMessageType>(null)
 
+    const helpful=useHelpful(messages,chatId,chating,inputState,onReload,setInputState)
     return <div className="h-screen overflow-hidden relative">
         <div className="absolute px-2 py-2 bg-[#fff] z-10 dark:bg-gray-950 text-sm text-gray-400 font-bold">{flow.name}</div>
         <div className="chata mt-14" style={{ height: 'calc(100vh - 5rem)' }}>
-            <div ref={messagesRef} className={`chat-panne h-full overflow-y-scroll no-scrollbar px-4 ${isRoom || isReport ? 'pb-40' : 'pb-20'}`}>
+            <div ref={messagesRef} className={`chat-panne h-full overflow-y-scroll no-scrollbar px-4 pb-36`}>
                 {
                     messages.map((c, i) => <ChatMessage key={c.id || i} userName={sendUserName} chat={c} onSource={() => setSouce(c)}></ChatMessage>)
                 }
             </div>
-            <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#fff] to-[rgba(255,255,255,0.8)] px-8 dark:bg-gradient-to-t dark:from-[#000] dark:to-[rgba(0,0,0,0.8)]">
-                <div className={`w-full text-area-box border border-gray-600 rounded-lg my-6 overflow-hidden pr-2 py-2 relative 
+            <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#fff] to-[rgba(255,255,255,0.8)] px-8  pt-3 dark:bg-gradient-to-t dark:from-[#000] dark:to-[rgba(0,0,0,0.8)]">
+                        {/* 有没有帮助 */}
+                        {helpful}
+                <div className={`w-full text-area-box border border-gray-600 rounded-lg mb-6 mt-3 overflow-hidden pr-2 py-2 relative 
                   ${inputDisabled && 'bg-gray-200 dark:bg-gray-600'}`}>
                     <textarea id='input'
                         ref={inputRef}
@@ -193,6 +198,7 @@ export default forwardRef(function ChatPanne({ chatId, flow, libId, version = 'v
         {(isRoom || isReport) && <div className=" absolute w-full flex justify-center bottom-32">
             <Button className="rounded-full" variant="outline" disabled={isStop} onClick={() => { setIsStop(true); stop(); }}><StopCircle className="mr-2" />Stop</Button>
         </div>}
+
         {/* 源文件类型 */}
         <ResouceModal chatId={chatId} open={!!souce} data={souce} setOpen={() => setSouce(null)}></ResouceModal>
         {/* 表单 */}
@@ -752,4 +758,76 @@ const useBuild = (flow: FlowType, chatId: string) => {
     }
 
     return handleBuild
+}
+
+
+// 有帮助 没有帮助
+const useHelpful=(messages,chatId,chating,inputState,onReload,setInputState)=>{
+    const { setErrorData, setSuccessData } = useContext(alertContext);
+    const { t } = useTranslation()
+    
+    const {helpful,helpless} = useMemo(()=>{
+        const handle=async(solved)=>{
+           
+            try {
+                setInputState({
+                    lock:true,
+                    errorCode:""
+                })
+                await chatResolved({chatId,solved})
+                setSuccessData({title: t('chat.resoledSuccess')})
+                 onReload()
+            } catch (error) {
+                console.error("Error:", error);
+                setErrorData({
+                    title:error.message
+                })
+            }finally{
+                setInputState({
+                    lock:false,
+                    errorCode:""
+                })
+            }
+          
+        }
+        return {
+            helpful:()=>handle(1),
+            helpless:()=>handle(2),
+        }
+    },[chatId,onReload,t,setInputState])
+
+    const show = useMemo(()=>{
+        /* 
+            何时展示 有帮助/没有帮助
+            1、没有对话内容  不展示
+            2、最后一条信息不是机器人发送的消息 不展示
+            3、最后一条机器人消息未完成 不展示
+            4、其余情况     展示
+        */
+        if(chating || !messages.length) return false;
+        const lastMessage = messages[messages.length-1]
+        if(lastMessage.isSend) return false;
+        return  true
+    },[messages,chating])
+
+    if(!show) return null;
+    return  <div className="w-full flex  gap-x-3 ">
+                <Button 
+                className="rounded-full"
+                variant="outline" 
+                disabled={inputState?.lock}
+                onClick={helpful}>
+                    <StopCircle className="mr-2" />
+                    {t('chat.helpful')}
+                </Button>
+
+                <Button 
+                className="rounded-full" 
+                variant="outline" 
+                disabled={inputState?.lock}
+                onClick={helpless}>
+                    <StopCircle className="mr-2" />
+                    {t('chat.helpless')}
+                </Button>
+            </div>
 }

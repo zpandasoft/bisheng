@@ -186,6 +186,7 @@ def create_knowledge(*,
             # 默认collectionName
             db_knowldge.collection_name = f'col_{int(time.time())}_{str(uuid4())[:8]}'
     db_knowldge.index_name = f'col_{int(time.time())}_{str(uuid4())[:8]}'
+
     db_knowldge.user_id = payload.get('user_id')
     session.add(db_knowldge)
     session.commit()
