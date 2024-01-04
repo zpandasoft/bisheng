@@ -23,15 +23,15 @@ services:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/mysql/conf/my.cnf:/etc/mysql/my.cnf
       - ${DOCKER_VOLUME_DIRECTORY:-.}/mysql/data:/var/lib/mysql
 
-  office:
-    image: onlyoffice/documentserver:7.1.1
-    ports:
-      - "8701:80"
-    volumes:
-      - ${DOCKER_VOLUME_DIRECTORY:-.}/office/bisheng:/var/www/onlyoffice/documentserver/sdkjs-plugins/bisheng
-      
+#  office:
+#    image: onlyoffice/documentserver:7.1.1
+#    ports:
+#      - "8701:80"
+#    volumes:
+#      - ${DOCKER_VOLUME_DIRECTORY:-.}/office/bisheng:/var/www/onlyoffice/documentserver/sdkjs-plugins/bisheng
+#
   backend:
-    image: dataelement/bisheng-backend:latest
+    image: dataelement/backend:latest
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7860/health"]
       interval: 1m30s
@@ -49,11 +49,11 @@ services:
     restart: on-failure
     depends_on:
       - "mysql"
-      - "office"
+#      - "office"
       - "redis"
 
   nginx:
-    image: dataelement/bisheng-frontend:latest
+    image: dataelement/qikun-frontend:latest
     ports:
       - "3001:3001"
     volumes:

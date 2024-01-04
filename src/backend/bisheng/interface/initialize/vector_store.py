@@ -230,7 +230,7 @@ def initial_milvus(class_object: Type[Milvus], params: dict, search_kwargs: dict
         if not knowledge:
             raise Exception(f'不能找到知识库collection={col}')
         model_param = settings.get_knowledge().get('embeddings').get(knowledge.model)
-        if knowledge.model == 'text-embedding-ada-002':
+        if knowledge.model == 'text-embedding-ada-002'  or knowledge.model == 'm3e':
             embedding = OpenAIEmbeddings(**model_param)
         else:
             embedding = HostEmbeddings(**model_param)

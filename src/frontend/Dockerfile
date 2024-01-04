@@ -8,3 +8,5 @@ RUN npm run build
 FROM nginx
 COPY --from=frontend_build /app/build/ /usr/share/nginx/html
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
+
+#docker build -t dataelement/qikun-frontend:latest ./
