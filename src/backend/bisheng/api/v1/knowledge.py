@@ -358,7 +358,7 @@ def delete_knowledge_file(*,
 
 def decide_embeddings(model: str) -> Embeddings:
     model_list = settings.get_knowledge().get('embeddings')
-    if model == 'text-embedding-ada-002':
+    if model == 'text-embedding-ada-002' or model == 'm3e':
         return OpenAIEmbeddings(**model_list.get(model))
     else:
         return HostEmbeddings(**model_list.get(model))
